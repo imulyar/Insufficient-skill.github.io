@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Организационная структура</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #37352f;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 80px 80px;
+  }
+
+  /* Page header */
+  .page-icon { font-size: 56px; margin-bottom: 16px; }
+  .page-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+  .page-meta {
+    font-size: 13px;
+    color: #9b9a97;
+    margin-bottom: 40px;
+  }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid #e9e9e7; margin: 32px 0; }
+
+  /* Section headings */
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title:first-of-type { margin-top: 0; }
+
+  /* Callout */
+  .callout {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #f1f1ef;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #37352f;
+    margin-bottom: 8px;
+  }
+  .callout-icon { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+  .callout strong { font-weight: 600; }
+
+  /* Navigator grid */
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .nav-card {
+    border-radius: 8px;
+    padding: 14px 16px;
+    cursor: default;
+    transition: filter 0.12s;
+    text-decoration: none;
+    display: block;
+  }
+  .nav-card:hover { filter: brightness(0.96); }
+
+  .nav-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .nav-card-desc {
+    font-size: 12px;
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+
+  /* Card colors */
+  .card-indigo  { background: #eef2ff; color: #3730a3; }
+  .card-green   { background: #dcfce7; color: #15803d; }
+  .card-amber   { background: #fef9c3; color: #92400e; }
+  .card-blue    { background: #dbeafe; color: #1e40af; }
+  .card-pink    { background: #fce7f3; color: #9d174d; }
+  .card-red     { background: #fee2e2; color: #991b1b; }
+  .card-purple  { background: #f3e8ff; color: #6b21a8; }
+  .card-slate   { background: #f1f5f9; color: #334155; }
+
+  /* Escalation steps */
+  .esc-list { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
+  .esc-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f9f9f8;
+    border-radius: 8px;
+    border: 1px solid #e9e9e7;
+    font-size: 13px;
+  }
+  .esc-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #37352f;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .esc-num.orange { background: #d97706; }
+  .esc-num.red    { background: #dc2626; }
+  .esc-text strong { font-weight: 600; display: block; margin-bottom: 2px; }
+  .esc-text span   { color: #6b7280; }
+
+  /* Table */
+  .table-section { margin-top: 12px; }
+
+  .block-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #37352f;
+    padding: 10px 0 8px;
+    border-bottom: 1px solid #e9e9e7;
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+  .block-label:first-child { margin-top: 0; }
+
+  .block-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead th {
+    background: #f7f6f3;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9b9a97;
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e9e9e7;
+    border-top: 1px solid #e9e9e7;
+  }
+  thead th:first-child { border-radius: 6px 0 0 0; }
+  thead th:last-child  { border-radius: 0 6px 0 0; }
+
+  tbody tr {
+    border-bottom: 1px solid #f1f1ef;
+    transition: background 0.1s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #f9f9f8; }
+
+  td { padding: 10px 14px; vertical-align: middle; }
+  td:first-child { font-weight: 500; color: #1a1a1a; }
+
+  .reports-ceo { color: #6366f1; font-weight: 500; font-size: 12px; }
+  .reports-mid { color: #6b7280; font-size: 12px; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .badge-ft { background: #dcfce7; color: #15803d; }
+  .badge-ft::before { background: #16a34a; }
+  .badge-pt { background: #fef9c3; color: #92400e; }
+  .badge-pt::before { background: #d97706; }
+
+  .slack-handle {
+    font-size: 12px;
+    color: #6b7280;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .table-wrapper {
+    border: 1px solid #e9e9e7;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .footer {
+    font-size: 12px;
+    color: #9b9a97;
+    text-align: right;
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid #e9e9e7;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 32px 20px 60px; }
+    .page-title { font-size: 26px; }
+    .nav-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="page-icon">🏢</div>
+  <h1 class="page-title">Организационная структура</h1>
+  <div class="page-meta">Обновлено · Май 2026 · Поддерживает: HR BP</div>
+
+  <!-- Callout -->
+  <div class="callout">
+    <span class="callout-icon">💡</span>
+    <span>Не знаешь, куда обратиться? <strong>Напиши HR BP.</strong> Поможем найти нужного человека.</span>
+  </div>
+
+  <hr>
+
+  <!-- Navigator -->
+  <div class="section-title">🗺️ Навигатор по блокам</div>
+
+  <div class="nav-grid">
+    <div class="nav-card card-indigo">
+      <div class="nav-card-header">🚀 Стратегия</div>
+      <div class="nav-card-desc">CEO — верхнеуровневые решения и стратегия</div>
+    </div>
+    <div class="nav-card card-green">
+      <div class="nav-card-header">💰 Финансы и Legal</div>
+      <div class="nav-card-desc">CFO → Fin. Manager, Lawyer, Op. Manager</div>
+    </div>
+    <div class="nav-card card-amber">
+      <div class="nav-card-header">🎯 Продукт и Retention</div>
+      <div class="nav-card-desc">PM → Retention, Back-Ops, Design, Dev</div>
+    </div>
+    <div class="nav-card card-blue">
+      <div class="nav-card-header">📋 Аналитика</div>
+      <div class="nav-card-desc">Head of Analytics → DWH Analyst</div>
+    </div>
+    <div class="nav-card card-pink">
+      <div class="nav-card-header">📢 Трафик и партнёры</div>
+      <div class="nav-card-desc">Head of Affiliate → 2× AM, Tech Integrator</div>
+    </div>
+    <div class="nav-card card-red">
+      <div class="nav-card-header">📢 Медийный трафик</div>
+      <div class="nav-card-desc">PopUp/Push Media Buyer</div>
+    </div>
+    <div class="nav-card card-purple">
+      <div class="nav-card-header">👥 HR</div>
+      <div class="nav-card-desc">HR BP — найм, адаптация, команда</div>
+    </div>
+    <div class="nav-card card-slate">
+      <div class="nav-card-header">🖥️ Техника и доступы</div>
+      <div class="nav-card-desc">System Administrator</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Escalation -->
+  <div class="section-title">⚡ Эскалация</div>
+  <div class="esc-list">
+    <div class="esc-step">
+      <div class="esc-num">1</div>
+      <div class="esc-text">
+        <strong>Нет ответа 1 рабочий день</strong>
+        <span>Напиши руководителю ответственного (см. колонку «Кому подчиняется» в таблице ниже)</span>
+      </div>
+    </div>
+    <div class="esc-step">
+      <div class="esc-num orange">2</div>
+      <div class="esc-text">
+        <strong>Нет ответа 2 рабочих дня</strong>
+        <span>Напиши HR BP или CEO</span>
+      </div>
+    </div>
+    <div class="esc-step">
+      <div class="esc-num red">!</div>
+      <div class="esc-text">
+        <strong>Срочно или непонятно к кому</strong>
+        <span>Сразу пиши HR BP — поможем разобраться</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Full table -->
+  <div class="section-title">👤 Полная структура команды</div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Роль</th>
+          <th>Блок</th>
+          <th>Кому подчиняется</th>
+          <th>Режим</th>
+          <th>Slack</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Strategy -->
+        <tr style="background:#f0f0fe">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#4338ca;letter-spacing:0.3px">🚀 СТРАТЕГИЯ</td>
+        </tr>
+        <tr>
+          <td>CEO</td>
+          <td>Strategy</td>
+          <td><span class="reports-mid">Антон</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+        <!-- Finance -->
+        <tr style="background:#f0fdf4">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#15803d;letter-spacing:0.3px">💰 ФИНАНСЫ И LEGAL</td>
+        </tr>
+        <tr>
+          <td>CFO</td>
+          <td>Finance/Legal</td>
+          <td><span class="reports-ceo">↑ CEO</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Financial Manager</td>
+          <td>Finance/Legal</td>
+          <td><span class="reports-mid">↑ CFO</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Senior Lawyer</td>
+          <td>Finance/Legal</td>
+          <td><span class="reports-mid">↑ CFO</span></td>
+          <td><span class="badge badge-pt">парт тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Operation Manager</td>
+          <td>Finance/Legal</td>
+          <td><span class="reports-mid">↑ CFO</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+        <!-- Product -->
+        <tr style="background:#fffbeb">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#b45309;letter-spacing:0.3px">🎯 ПРОДУКТ И RETENTION</td>
+        </tr>
+        <tr>
+          <td>Product Manager</td>
+          <td>Product</td>
+          <td><span class="reports-ceo">↑ CEO</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Retention Manager</td>
+          <td>Product</td>
+          <td><span class="reports-mid">↑ Product Manager</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Back Operation Manager</td>
+          <td>Product</td>
+          <td><span class="reports-mid">↑ Product Manager</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Designer</td>
+          <td>Product</td>
+          <td><span class="reports-mid">↑ Product Manager</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Frontend Developer</td>
+          <td>Product</td>
+          <td><span class="reports-mid">↑ Product Manager</span></td>
+          <td><span class="badge badge-pt">парт тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+        <!-- Analytics -->
+        <tr style="background:#eff6ff">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#1d4ed8;letter-spacing:0.3px">📋 АНАЛИТИКА</td>
+        </tr>
+        <tr>
+          <td>Head of Analytics</td>
+          <td>Analytics</td>
+          <td><span class="reports-ceo">↑ CEO</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>DWH Analyst</td>
+          <td>Analytics</td>
+          <td><span class="reports-mid">↑ Head of Analytics</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+        <!-- Affiliate -->
+        <tr style="background:#fdf2f8">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#9d174d;letter-spacing:0.3px">📢 ТРАФИК И ПАРТНЁРЫ</td>
+        </tr>
+        <tr>
+          <td>Head of Affiliate</td>
+          <td>Affiliate</td>
+          <td><span class="reports-ceo">↑ CEO</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Affiliate Manager</td>
+          <td>Affiliate</td>
+          <td><span class="reports-mid">↑ Head of Affiliate</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Affiliate Manager</td>
+          <td>Affiliate</td>
+          <td><span class="reports-mid">↑ Head of Affiliate</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+        <tr>
+          <td>Tech Integrator</td>
+          <td>Affiliate</td>
+          <td><span class="reports-mid">↑ Head of Affiliate</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+        <!-- Media -->
+        <tr style="background:#fff1f2">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#be123c;letter-spacing:0.3px">📢 МЕДИЙНЫЙ ТРАФИК</td>
+        </tr>
+        <tr>
+          <td>PopUp/Push Media Buyer</td>
+          <td>Marketing</td>
+          <td><span class="reports-ceo">↑ CEO</span></td>
+          <td><span class="badge badge-pt">парт тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+        <!-- HR -->
+        <tr style="background:#faf5ff">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#7e22ce;letter-spacing:0.3px">👥 HR</td>
+        </tr>
+        <tr>
+          <td>HR BP</td>
+          <td>HR</td>
+          <td><span class="reports-ceo">↑ CEO</span></td>
+          <td><span class="badge badge-ft">фулл тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+        <!-- Tech -->
+        <tr style="background:#f8fafc">
+          <td colspan="5" style="padding:7px 14px;font-size:12px;font-weight:600;color:#334155;letter-spacing:0.3px">🖥️ ТЕХНИКА И ДОСТУПЫ</td>
+        </tr>
+        <tr>
+          <td>System Administrator</td>
+          <td>Tech</td>
+          <td><span class="reports-ceo">↑ CEO</span></td>
+          <td><span class="badge badge-pt">парт тайм</span></td>
+          <td><span class="slack-handle">@имя</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">Последнее обновление: май 2026 · Поддерживает: HR BP</div>
+
+</div>
+</body>
+</html>
